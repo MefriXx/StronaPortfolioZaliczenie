@@ -1,48 +1,129 @@
 
 :root {
-    --color-background: #2C2C2C;
-    --color-text: #E4E4E4;
-    --color-accent1: #A8DADC;
-    --color-accent2: #FFC1CC;
-    --color-cta: #B39CD0;
+    --background: #0f172a;
+    --surface: #1e293b;
+    --text: #e2e8f0;
+    --accent: #38bdf8;
+    --border: #334155;
+}
+@media (prefers-color-scheme: light) {
+    :root {
+        --background: #fafafa;
+        --surface: #ffffff;
+        --text: #1e293b;
+        --accent: #2563eb;
+        --border: #e2e8f0;
+    }   
+}
+html {
+    background-color: var(--background);
 }
 
 * {
     box-sizing: border-box;
 }
 
-.site {
+body {
     display: grid;
-    grid-template-rows: auto 1fr auto auto;
-    gap: 1em;
+    grid-template-rows: auto 1fr auto;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
     min-height: 100vh;
+    
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+.site-about{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+    "person person"
+    "main aside"
+    "cta cta";
+    gap: 1em;
+    max-width: 1200px;
+    margin: 0 auto;
     font-family: sans-serif;
-    background-color: var(--color-background);
-    color: var(--color-text);
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.site-portfolio {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--text);
+}
+
+.person { grid-area: person; }
+.main { grid-area: main; }
+.aside { grid-area: aside; }
+.cta { 
+    grid-area: cta; 
+
+}
+
+.index-li {
+    display: inline-block;
+    color: var(--text);
+}
+
+.subpage-button {
+    color: var(--text);
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: var(--surface);
+    padding: 10px 30px 10px 30px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.subpage-button:hover {
+    transform: scale(1.05);
+    background-color: var(--background);
+}
+
+.project { 
+    background: var(--surface);
+    border: none;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0 , 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    align-content: start;
+}
+
+.project:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .site-about {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "person"
+        "main"
+        "aside"
+        "cta";
+    }
 }
 
 .site-header {
     grid-row: 1;
-    background-color: var(--color-accent1) ;
-    color: #2C2C2C;
-    padding: 2rem 1.5rem;
+    background: linear-gradient(135deg, var(--accent) 0%, #0ea5e9 100%);
+    color: var(--background);
+    padding: 3rem 1.5rem;
     text-align: center;
     font-weight: bold;
 }
 
-.site-main {
-    grid-row: 2;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas:
-        "content nav"
-        "twin1 twin2";
-    gap: 1.5rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-}
 
 .widget-area {
     grid-row: 3;
@@ -52,10 +133,18 @@
 }
 
 .site-footer {
-    grid-row: 4;
     background-color: #222222;
-    color: var(--color-text);
-    padding: 1.5rem;
+    color: var(--text);
+    padding: 3rem;
     text-align: center;
     border-top: 1px solid #3d3d3d;
+}
+
+li {
+    padding: 5px 10px;
+    margin: 10px;
+}
+
+ul {
+    list-style-type: decimal;
 }
